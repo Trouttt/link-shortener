@@ -6,10 +6,22 @@
 2. Sistema faz uma requisição para a URL da api
 3. Sistema efetura o registro
 
-> ### Exceção - Falha no servidor
-
-1. Sistema retorna uma mensagem de erro inesperado
-
 > ### Exceção - Email já cadastrado
 
-1. Sistema retorna uma mensagem de erro avisando que o email já está cadastrado no sistema.
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email já está cadastrado no sistema.
+
+> ### Exceção - Não inseriu email - Válidado
+
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que não inseriu o email
+
+> ### Exceção - Email inválido (sem o @)
+
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email está inválido
+
+> ### Exceção - Não inseriu a senha - Válidado
+
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que não inseriu a senha
+
+> ### Exceção - Senha menor que 8 caractéres
+
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que a senha está menor que 8 caractéres
