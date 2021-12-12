@@ -6,7 +6,7 @@
 2. Sistema faz uma requisição para a URL da api
 3. Sistema efetura o registro
 
-> ### Exceção - Email já cadastrado
+> ### Exceção - Email já cadastrado - Validado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email já está cadastrado no sistema.
 
