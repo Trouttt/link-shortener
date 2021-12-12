@@ -14,7 +14,7 @@
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que não inseriu o email
 
-> ### Exceção - Email inválido (sem o @)
+> ### Exceção - Email inválido (sem o @) - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email está inválido
 
