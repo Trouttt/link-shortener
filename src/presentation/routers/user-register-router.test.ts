@@ -9,6 +9,7 @@ const fakeUser: AccountModel = {
 
 class UserRegisterRouter {
   route = (httpRequest: { body: AccountModel }) => {
+
     if (httpRequest.body.email === fakeUser.email) {
       return {
         statusCode: 400,
@@ -19,7 +20,7 @@ class UserRegisterRouter {
     if (!httpRequest.body.email) {
       return {
         statusCode: 400,
-        message: 'Campo do email está vazio!!!',
+        message: 'Campo email está vazio!!!',
       };
     } 
 
@@ -34,16 +35,25 @@ class UserRegisterRouter {
     if (!httpRequest.body.password) {
       return {
         statusCode: 400,
-        message: 'Campo da senha está vazia!!!',
+        message: 'Campo senha está vazio!!!',
       };
     }
 
     if (httpRequest.body.password.length < 8){
       return {
         statusCode: 400,
-        message: 'Campo da senha está menor que 8 caracteres!!!'
+        message: 'Campo senha está menor que 8 caracteres!!!'
       }
     }
+
+    if (!httpRequest.body.name){
+      return {
+        statusCode: 400,
+        message: 'Campo nome está vazio!!!'
+      }
+    }
+
+
     return {
       statusCode: 200,
     };
@@ -83,7 +93,7 @@ describe('User Register Router', () => {
     ).toBe(
        400,
     );
-    expect(httpResponse.message).toBe('Campo do email está vazio!!!');
+    expect(httpResponse.message).toBe('Campo email está vazio!!!');
   });
 
   test('Should return 400 and message if email is invalid', () => {
@@ -106,11 +116,11 @@ describe('User Register Router', () => {
       body: {
         email: 'any_email@gmail.com',
         name: 'any_name',
-      },
+      }, 
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.message).toBe('Campo da senha está vazia!!!');
+    expect(httpResponse.message).toBe('Campo senha está vazio!!!');
   });
 
   
@@ -125,7 +135,21 @@ describe('User Register Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.message).toBe('Campo da senha está menor que 8 caracteres!!!');
+    expect(httpResponse.message).toBe('Campo senha está menor que 8 caracteres!!!');
   });
+  
+  test('Should return 400 and message if no name is provided', () => {
+    const sut = new UserRegisterRouter();
+    const httpRequest = {
+      body: {
+        email: 'any_email@gmail.com',
+        password: '123456789'
+      },
+    };
+    const httpResponse = sut.route(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.message).toBe('Campo nome está vazio!!!');
+  });
+
   
 });
