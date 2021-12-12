@@ -1,0 +1,13 @@
+[34m0885158  [31m (HEAD -> main)  [37mChore(test): ensure UserRegisterRouter returns 400 if the email doesn't have @ - [36mLeonardo da Silva Siqueira, [32m7 hours ago
+[34m6f2c040  [31m  [37mChore(test): ensure UserRegisterRouter returns 400 if email is already being used - [36mLeonardo da Silva Siqueira, [32m8 hours ago
+[34md112054  [31m  [37mensure UserRegisterRouter returns 400 if no password is provided - [36mLeonardo da Silva Siqueira, [32m20 hours ago
+[34m9489cf3  [31m  [37mChore(test): added new exceptions - [36mLeonardo da Silva Siqueira, [32m20 hours ago
+[34m253a6f7  [31m  [37mFix(config): jest.config.ts moved to fix error in tsconfig.json - [36mLeonardo da Silva Siqueira, [32m21 hours ago
+[34m8d8ae0c  [31m  [37mAdded(config): added coverage - [36mLeonardo da Silva Siqueira, [32m21 hours ago
+[34md548be4  [31m  [37mChore(test): ensure UserRegisterRouter returns 400 if no email is provided - [36mLeonardo da Silva Siqueira, [32m21 hours ago
+[34mb5adbdf  [31m  [37mAdded(test): added user register router test - [36mLeonardo da Silva Siqueira, [32m21 hours ago
+[34md30c9f6  [31m  [37mAdded(model): added Account interface - [36mLeonardo da Silva Siqueira, [32m21 hours ago
+[34me4ab053  [31m  [37mAdded(package): added babel config - [36mLeonardo da Silva Siqueira, [32m22 hours ago
+[34mdb42866  [31m  [37mAdded: jest - [36mLeonardo da Silva Siqueira, [32m25 hours ago
+[34m22e6ff3  [31m  [37mAdded: User Register Use Case - [36mLeonardo da Silva Siqueira, [32m25 hours ago
+[34m6dc6cfe  [31m (origin/main, origin/HEAD)  [37mInitial commit - [36mTrouttt, [32m26 hours ago
