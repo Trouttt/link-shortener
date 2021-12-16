@@ -6,22 +6,22 @@
 2. Sistema faz uma requisição para a URL da api
 3. Sistema efetua o registro
 
-> ### Exceção - Não inseriu email
+> ### Exceção - Não inseriu email - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que não inseriu o email
 
-> ### Exceção - Email inválido (sem o @)
+> ### Exceção - Email inválido (sem o @) - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email está inválido
 
-> ### Exceção - Email sem vínculo com alguma conta
+> ### Exceção - Email sem vínculo com alguma conta - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que o email está inválido
 
-> ### Exceção - Não inseriu a senha
+> ### Exceção - Não inseriu a senha - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que não inseriu a senha
 
-> ### Exceção - Senha com menor que 8 caractéres
+> ### Exceção - Senha com menor que 8 caractéres - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que a senha está menor que 8 caractéres
