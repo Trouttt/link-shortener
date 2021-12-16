@@ -16,13 +16,26 @@ const fakeAccounts: AccountModel[] = [
 ];
 
 class LoginUserRouter {
+  findByEmail = (httpRequest: { body: AccountModel }): boolean => {
+    const { email } = httpRequest.body;
+    let isEmailValid = false;
+    fakeAccounts.forEach(account => {
+      if (account.email === email) isEmailValid = true;
+    });
+    return isEmailValid;
+  };
+
   route = (httpRequest: { body: AccountModel }) => {
     const { email, password } = httpRequest.body;
+    const findByEmail: boolean = this.findByEmail(httpRequest);
     if (!email) {
       return HttpResponse.badRequest('Campo email está vazio!!!');
     }
     if (email.indexOf('@') === -1) {
       return HttpResponse.badRequest('Email está inválido!!!');
+    }
+    if (!findByEmail) {
+      return HttpResponse.badRequest('Email/Password inválido!!!');
     }
 
     return {
@@ -59,6 +72,21 @@ describe('User authenticate', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
       new MissingParamsError('Email está inválido!!!'),
+    );
+  });
+
+  test('Should return 400 and message if the email is not exist registed', () => {
+    const sut = new LoginUserRouter();
+    const httpRequest = {
+      body: {
+        email: 'any_email@gmail.com',
+        password: 'any_password2',
+      },
+    };
+    const httpResponse = sut.route(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(
+      new MissingParamsError('Email/Password inválido!!!'),
     );
   });
 });
