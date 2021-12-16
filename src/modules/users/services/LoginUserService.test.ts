@@ -40,6 +40,12 @@ class LoginUserRouter {
     if (!password) {
       return HttpResponse.badRequest('Campo senha está vazio!!!');
     }
+
+    if (password.length < 8) {
+      return HttpResponse.badRequest(
+        'Campo senha está menor que 8 caracteres!!!',
+      );
+    }
     return {
       statusCode: HttpResponse.ok().statusCode,
       body: '',
@@ -103,6 +109,21 @@ describe('User authenticate', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
       new MissingParamsError('Campo senha está vazio!!!'),
+    );
+  });
+
+  test('Should return 400 and message if password less than 8 characters', () => {
+    const sut = new LoginUserRouter();
+    const httpRequest = {
+      body: {
+        email: 'any_email2@gmail.com',
+        password: 'sadasd',
+      },
+    };
+    const httpResponse = sut.route(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(
+      new MissingParamsError('Campo senha está menor que 8 caracteres!!!'),
     );
   });
 });
