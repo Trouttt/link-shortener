@@ -1,9 +1,7 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
-import { response, Response } from 'express';
 import IUser from '../infra/typeorm/entities/User';
 import HttpResponse from '../../../shared/error/helpers/http-error';
-import AppError from '../../../shared/error/errors/missing-param-error';
 
 interface IRequest {
   name: string;
