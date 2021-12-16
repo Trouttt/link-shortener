@@ -1,10 +1,10 @@
-# Use Register Use Case
+# User Register Use Case
 
 > ### Caso de sucesso
 
 1. Sistema valida os dados
 2. Sistema faz uma requisição para a URL da api
-3. Sistema efetura o registro
+3. Sistema efetua o registro
 
 > ### Exceção - Email já cadastrado - Validado
 
