@@ -37,7 +37,9 @@ class LoginUserRouter {
     if (!findByEmail) {
       return HttpResponse.badRequest('Email/Password inválido!!!');
     }
-
+    if (!password) {
+      return HttpResponse.badRequest('Campo senha está vazio!!!');
+    }
     return {
       statusCode: HttpResponse.ok().statusCode,
       body: '',
@@ -87,6 +89,20 @@ describe('User authenticate', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
       new MissingParamsError('Email/Password inválido!!!'),
+    );
+  });
+
+  test('Should return 400 and message if no password is provided', () => {
+    const sut = new LoginUserRouter();
+    const httpRequest = {
+      body: {
+        email: 'any_email2@gmail.com',
+      },
+    };
+    const httpResponse = sut.route(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(
+      new MissingParamsError('Campo senha está vazio!!!'),
     );
   });
 });
