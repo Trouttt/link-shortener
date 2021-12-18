@@ -1,5 +1,4 @@
 import { createConnections, getConnection } from 'typeorm';
-import { AccountModel } from '../../../account';
 import CreateUserService from './CreateUserService';
 
 beforeAll(async () => {
@@ -10,12 +9,6 @@ afterAll(async () => {
   const defaultConnection = getConnection('default');
   await defaultConnection.close();
 });
-
-const fakeUser: AccountModel = {
-  email: 'same_email@gmail.com',
-  name: 'any_name2',
-  password: 'any_password2',
-};
 
 const makeSut = () => {
   return new CreateUserService();
