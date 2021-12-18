@@ -1,7 +1,5 @@
 import { createConnections, getConnection } from 'typeorm';
-import { AccountModel } from '../../../account';
-import AppError from '../../../shared/error/AppError';
-import AuthenticationUserService from './AuthenticationUserService';
+import AuthenticateUserService from './AuthenticateUserService';
 
 beforeAll(async () => {
   await createConnections();
@@ -13,7 +11,7 @@ afterAll(async () => {
 });
 
 const makeSut = () => {
-  return new AuthenticationUserService();
+  return new AuthenticateUserService();
 };
 describe('User Login Service', () => {
   test('Should return 400 and message if no email is provided', async () => {

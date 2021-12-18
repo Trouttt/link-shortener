@@ -16,7 +16,7 @@ interface IResponse {
   token: string;
 }
 
-class AuthenticationUserService {
+class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     try {
       const usersRepository = await getRepository(IUser);
@@ -65,4 +65,4 @@ class AuthenticationUserService {
   }
 }
 
-export default AuthenticationUserService;
+export default AuthenticateUserService;

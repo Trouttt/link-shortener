@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { response, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 import IUser from '../infra/typeorm/entities/User';
