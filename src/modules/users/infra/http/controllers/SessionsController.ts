@@ -9,7 +9,6 @@ export default class SessionsController {
 
       const http = new Http();
       const authenticateUser = new LoginUserService();
-
       const { user, token } = await authenticateUser.execute({
         email,
         password,
