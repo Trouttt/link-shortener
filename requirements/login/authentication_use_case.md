@@ -25,3 +25,7 @@
 > ### Exceção - Senha com menor que 8 caractéres - Válidado
 
 1. Sistema retorna um statusCode e uma mensagem de erro avisando que a senha está menor que 8 caractéres
+
+> ### Exceção - Senha inválida - Válidado
+
+1. Sistema retorna um statusCode e uma mensagem de erro avisando que a senha ou o email estão inválidos
