@@ -26,6 +26,8 @@ class User implements IUser {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  statusCode: number;
 }
 
 export default User;
