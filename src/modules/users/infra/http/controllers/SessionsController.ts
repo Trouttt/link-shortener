@@ -15,8 +15,6 @@ export default class SessionsController {
       });
 
       response.statusCode = http.response(user);
-      user.password = '';
-
       return response.json({ user, token });
     } catch (err) {
       response.statusCode = err.statusCode;

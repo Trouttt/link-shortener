@@ -11,9 +11,14 @@ interface IRequest {
   email: string;
   password: string;
 }
+interface IErr {
+  message: string;
+  statusCode: number;
+}
 interface IResponse {
   user: IUser;
-  token: string;
+  token?: string;
+  err?: IErr;
 }
 
 class AuthenticateUserService {
@@ -49,18 +54,23 @@ class AuthenticateUserService {
       if (user && !passwordMatched) {
         throw new AppError('Email/Password inválido!!!!', 400);
       }
+
       const { expiresIn } = auth.jwt;
       const token = sign({}, auth.jwt.secret, {
         subject: user.id,
         expiresIn,
       });
 
+      if (token) {
+        user.password = '';
+      }
+
       return {
         token,
         user,
       };
     } catch (err) {
-      return err;
+      return { user: err };
     }
   }
 }
