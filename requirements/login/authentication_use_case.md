@@ -1,10 +1,10 @@
-# User Login Use Case
+# User Authentication Use Case
 
 > ### Caso de sucesso
 
 1. Sistema valida os dados
 2. Sistema faz uma requisição para a URL da api
-3. Sistema efetua o registro
+3. Sistema efetua a autenticação do usuário
 
 > ### Exceção - Não inseriu email - Válidado
 
