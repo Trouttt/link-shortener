@@ -1,6 +1,8 @@
 class Http {
   response = (object: { statusCode: number }) => {
-    if (object.statusCode) return object.statusCode;
+    if (object.statusCode) {
+      return object.statusCode;
+    }
     return 200;
   };
 }
