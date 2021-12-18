@@ -10,6 +10,11 @@ afterAll(async () => {
   await defaultConnection.close();
 });
 
+interface AppError {
+  message: string;
+  statusCode: number;
+}
+
 const makeSut = () => {
   return new AuthenticateUserService();
 };
@@ -22,8 +27,10 @@ describe('User Login Service', () => {
     };
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Campo email está vazio!!!',
-      statusCode: 400,
+      user: {
+        message: 'Campo email está vazio!!!',
+        statusCode: 400,
+      },
     });
   });
 
@@ -35,8 +42,10 @@ describe('User Login Service', () => {
     };
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Insira um email!!!',
-      statusCode: 400,
+      user: {
+        message: 'Insira um email!!!',
+        statusCode: 400,
+      },
     });
   });
   test('Should return 400 and message if no password is provided', async () => {
@@ -47,8 +56,10 @@ describe('User Login Service', () => {
     };
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Campo senha está vázio!!!',
-      statusCode: 400,
+      user: {
+        message: 'Campo senha está vázio!!!',
+        statusCode: 400,
+      },
     });
   });
 
@@ -61,8 +72,10 @@ describe('User Login Service', () => {
 
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Campo senha deve ter no mínimo 8 caractéres!!!',
-      statusCode: 400,
+      user: {
+        message: 'Campo senha deve ter no mínimo 8 caractéres!!!',
+        statusCode: 400,
+      },
     });
   });
 
@@ -74,8 +87,10 @@ describe('User Login Service', () => {
     };
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Email/Password inválido!!!',
-      statusCode: 400,
+      user: {
+        message: 'Email/Password inválido!!!',
+        statusCode: 400,
+      },
     });
   });
 
@@ -87,8 +102,10 @@ describe('User Login Service', () => {
     };
     const httpResponse = await sut.execute(httpRequest);
     expect(httpResponse).toEqual({
-      message: 'Email/Password inválido!!!!',
-      statusCode: 400,
+      user: {
+        message: 'Email/Password inválido!!!!',
+        statusCode: 400,
+      },
     });
   });
 });

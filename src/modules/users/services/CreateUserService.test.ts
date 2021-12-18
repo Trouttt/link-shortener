@@ -23,6 +23,7 @@ describe('User Register Service', () => {
       name: 'any_name',
     };
     const httpResponse = await sut.execute(httpRequest);
+
     expect(httpResponse).toEqual({
       message: 'Campo email está vazio!!!',
       statusCode: 400,
