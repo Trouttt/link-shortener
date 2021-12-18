@@ -1,22 +1,27 @@
 import 'reflect-metadata';
-import { response, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { hash } from 'bcryptjs';
+import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import auth from '../../../config/auth';
+
 import IUser from '../infra/typeorm/entities/User';
 import AppError from '../../../shared/error/AppError';
 
 interface IRequest {
-  name: string;
   email: string;
   password: string;
 }
+interface IResponse {
+  user: IUser;
+  token: string;
+}
 
-class CreateUserService {
-  public async execute({ name, email, password }: IRequest): Promise<IUser> {
+class AuthenticationUserService {
+  public async execute({ email, password }: IRequest): Promise<IResponse> {
     try {
       const usersRepository = await getRepository(IUser);
 
-      const checkUserExists = await usersRepository.findOne({
+      const user = await usersRepository.findOne({
         where: { email },
       });
 
@@ -27,34 +32,37 @@ class CreateUserService {
       if (email.indexOf('@') === -1) {
         throw new AppError('Insira um email!!!', 400);
       }
-
-      if (name.length === 0 || !name) {
-        throw new AppError('Campo nome está inválido!!!', 400);
+      if (!user) {
+        throw new AppError('Email/Password inválido!!!', 400);
       }
-      if (password.length === 0 || !password) {
+      if (password?.length === 0 || !password) {
         throw new AppError('Campo senha está vázio!!!', 400);
       }
+
       if (password.length < 8) {
         throw new AppError(
           'Campo senha deve ter no mínimo 8 caractéres!!!',
           400,
         );
       }
-      if (checkUserExists) {
-        throw new AppError('Email já está em uso!!!', 400);
+      const passwordMatched = await compare(password, user.password);
+      if (user && !passwordMatched) {
+        throw new AppError('Email/Password inválido!!!!', 400);
       }
-      const hashedPassword = await hash(password, 8);
-      const user = await usersRepository.create({
-        name,
-        email,
-        password: hashedPassword,
+      const { expiresIn } = auth.jwt;
+      const token = sign({}, auth.jwt.secret, {
+        subject: user.id,
+        expiresIn,
       });
 
-      await usersRepository.save(user);
-      return user;
+      return {
+        token,
+        user,
+      };
     } catch (err) {
       return err;
     }
   }
 }
-export default CreateUserService;
+
+export default AuthenticationUserService;
