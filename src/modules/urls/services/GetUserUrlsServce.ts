@@ -4,14 +4,17 @@ import AppError from '../../../shared/error/AppError';
 
 import IShortUrl from '../infra/typeorm/entities/ShortUrl';
 
-class GetShortUrlMoreVisitedService {
-  public async execute(): Promise<Array<IShortUrl>> {
+interface IRequest {
+  user_id: string;
+}
+class GetUserShortUrlService {
+  public async execute({ user_id }: IRequest): Promise<Array<IShortUrl>> {
     try {
       const urlsRepository = await getRepository(IShortUrl);
 
       const links = await urlsRepository.find({
         order: { visited: 'DESC' },
-        take: 100,
+        where: { user_id },
       });
 
       if (!links) {
@@ -24,4 +27,4 @@ class GetShortUrlMoreVisitedService {
     }
   }
 }
-export default GetShortUrlMoreVisitedService;
+export default GetUserShortUrlService;

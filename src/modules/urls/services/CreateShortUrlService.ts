@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { getRepository } from 'typeorm';
-import { hash } from 'bcryptjs';
 import IShortUrl from '../infra/typeorm/entities/ShortUrl';
 import AppError from '../../../shared/error/AppError';
 
