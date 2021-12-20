@@ -10,5 +10,6 @@ urlsRouter.get('/:userId', ensureAuthenticate, urlsController.getUserUrls);
 urlsRouter.get('/', urlsController.getMoreVisited);
 urlsRouter.post('/', urlsController.create);
 urlsRouter.put('/', urlsController.update);
+urlsRouter.delete('/', urlsController.delete);
 
 export default urlsRouter;
