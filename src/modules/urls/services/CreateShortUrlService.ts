@@ -12,11 +12,7 @@ interface IRequest {
 }
 
 class CreateUserService {
-  public async execute({
-    url,
-    user_id,
-    visited,
-  }: IRequest): Promise<IShortUrl> {
+  public async execute({ url, user_id }: IRequest): Promise<IShortUrl> {
     try {
       const urlsRepository = await getRepository(IShortUrl);
 
@@ -33,7 +29,7 @@ class CreateUserService {
         url,
         shortUrl: `localhost:8080/${idRandom}`,
         user_id,
-        visited,
+        visited: 0,
       });
 
       await urlsRepository.save(link);
