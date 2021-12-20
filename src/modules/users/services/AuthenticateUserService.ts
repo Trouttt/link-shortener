@@ -37,18 +37,17 @@ class AuthenticateUserService {
       if (email.indexOf('@') === -1) {
         throw new AppError('Insira um email!!!', 400);
       }
-      if (!user) {
-        throw new AppError('Email/Password inválido!!!', 400);
-      }
       if (password?.length === 0 || !password) {
         throw new AppError('Campo senha está vázio!!!', 400);
       }
-
       if (password.length < 8) {
         throw new AppError(
           'Campo senha deve ter no mínimo 8 caractéres!!!',
           400,
         );
+      }
+      if (!user) {
+        throw new AppError('Email/Password inválido!!!', 400);
       }
       const passwordMatched = await compare(password, user.password);
       if (user && !passwordMatched) {

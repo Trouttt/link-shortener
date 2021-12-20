@@ -10,11 +10,6 @@ afterAll(async () => {
   await defaultConnection.close();
 });
 
-interface AppError {
-  message: string;
-  statusCode: number;
-}
-
 const makeSut = () => {
   return new AuthenticateUserService();
 };
@@ -97,7 +92,7 @@ describe('User Login Service', () => {
   test('Should return 400 and message if password is not matched', async () => {
     const sut = makeSut();
     const httpRequest = {
-      email: 'email_registed@gmail.com',
+      email: 'same_email@gmail.com',
       password: 'any_password222',
     };
     const httpResponse = await sut.execute(httpRequest);
