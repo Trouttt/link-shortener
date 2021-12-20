@@ -16,7 +16,7 @@
     // "sourceMap": true,                           /* Generates corresponding '.map' file. */
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
     "outDir": "./dist",                              /* Redirect output structure to the directory. */
-    "rootDir": "./src",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "rootDir": "server/src",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                           /* Enable project compilation */
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
     // "removeComments": true,                      /* Do not emit comments to output. */
@@ -67,9 +67,9 @@
     /* Advanced Options */
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "typeRoots": [
-      "./src/@types",
+      "server/src/@types",
       "./@types",
-      "./node_modules/@types"
+      "server/node_modules/@types"
       ],   
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   }
