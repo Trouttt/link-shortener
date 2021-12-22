@@ -7,10 +7,11 @@
         <div>
           <q-card class="my-card bg-cyan-7 text-white">
             <q-card-section>
-              <div>id: {{ url.id }}</div>
               <div class="text-h6 card-item">shortUrl: {{ url.shortUrl }}</div>
               <div class="text-h6 card-item">Url: {{ url.url }}</div>
-              <div class="text-h6 card-item">visitado: {{ url.visited }}</div>
+              <div class="text-h6 card-item">
+                Quantidade de visitas: {{ url.visited }}
+              </div>
             </q-card-section>
 
             <q-card-actions>

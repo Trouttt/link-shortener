@@ -13,6 +13,7 @@
         square
         class="input"
         v-model="user.password"
+        type="password"
         outlined
         label="Password:"
       />
@@ -86,6 +87,9 @@ export default defineComponent({
 }
 .button-style {
   margin-top: 2%;
+}
+.input {
+  margin: 2% 0%;
 }
 
 @media (max-width: 800px) {

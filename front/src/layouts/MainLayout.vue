@@ -80,7 +80,7 @@ const linksList = localStorage.getItem('token')
       {
         title: 'Registro',
         caption: '',
-        icon: 'add',
+        icon: 'person',
         link: 'http://localhost:8080/#/register',
       },
     ];

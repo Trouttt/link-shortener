@@ -14,6 +14,7 @@
         class="input"
         v-model="user.password"
         outlined
+        type="password"
         label="Password:"
       />
       <q-btn
@@ -82,6 +83,9 @@ export default defineComponent({
 }
 .button-style {
   margin-top: 2%;
+}
+.input {
+  margin: 2% 0%;
 }
 
 @media (max-width: 800px) {

@@ -35,11 +35,12 @@ export default defineComponent({
       user_id: '',
       url: '',
     });
-    url.user_id = localStorage.getItem('id');
+    if (localStorage.getItem('id')) url.user_id = localStorage.getItem('id');
     async function createUrl(url: ICreateUrl) {
       const urlService = new UrlService();
       const createdUrl = await urlService.createUrl(url);
       console.log(url);
+      console.log(createdUrl);
       localStorage.setItem('shortUrl', createdUrl.data.shortUrl);
       await router.push('/successful');
     }
