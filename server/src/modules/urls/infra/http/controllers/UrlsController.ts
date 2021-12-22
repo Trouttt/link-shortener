@@ -5,8 +5,26 @@ import UpdateUrlService from '../../../services/UpdateShortUrlService';
 import GetShortUrlMoreVisitedService from '../../../services/GetShortUrlMoreVIsitedService';
 import GetUserShortUrlService from '../../../services/GetUserUrlsServce';
 import DeleteUrlService from '../../../services/DeleteShortUrlService';
+import GetUrlFromShortUrlService from '../../../services/GetUrlFromShortUrlService';
 
 export default class UrlsController {
+  public async getUrlFromShortUrl(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    try {
+      const { shortUrl } = request.body;
+      const http = new Http();
+      const getUrlService = new GetUrlFromShortUrlService();
+      const link = await getUrlService.execute({ shortUrl });
+      response.statusCode = http.response(link);
+      return response.json(link);
+    } catch (err) {
+      response.statusCode = err.statusCode;
+      return response.json(err);
+    }
+  }
+
   public async getUserUrls(
     request: Request,
     response: Response,
@@ -83,8 +101,7 @@ export default class UrlsController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     try {
-      const { id } = request.body;
-
+      const { id } = request.params;
       const http = new Http();
       const deleteUrlService = new DeleteUrlService();
       const link = await deleteUrlService.execute({

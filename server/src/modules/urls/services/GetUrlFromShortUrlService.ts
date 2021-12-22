@@ -5,24 +5,25 @@ import AppError from '../../../shared/error/AppError';
 import IShortUrl from '../infra/typeorm/entities/ShortUrl';
 
 interface IRequest {
-  user_id: string;
+  shortUrl: string;
 }
-class GetUserShortUrlService {
-  public async execute({ user_id }: IRequest): Promise<Array<IShortUrl>> {
+class GetUrlFromShortUrlService {
+  public async execute({ shortUrl }: IRequest): Promise<IShortUrl> {
     try {
       const urlsRepository = await getRepository(IShortUrl);
-      const links = await urlsRepository.find({
-        where: { user_id },
+
+      const link = await urlsRepository.findOne({
+        where: { shortUrl },
       });
 
-      if (!links) {
+      if (!link) {
         throw new AppError('Erro ao buscar links!!!', 400);
       }
 
-      return links;
+      return link;
     } catch (err) {
       return err;
     }
   }
 }
-export default GetUserShortUrlService;
+export default GetUrlFromShortUrlService;

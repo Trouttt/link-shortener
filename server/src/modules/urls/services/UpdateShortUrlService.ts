@@ -17,7 +17,6 @@ class UpdateUrlService {
       const link = await urlsRepository.findOne({
         where: { id },
       });
-
       if (link) {
         link.visited += 1;
       } else {

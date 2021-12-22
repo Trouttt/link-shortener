@@ -3,6 +3,18 @@ import Http from '../../../../../shared/error/Http';
 import LoginUserService from '../../../services/AuthenticateUserService';
 
 export default class SessionsController {
+  public async security(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    try {
+      return response.json({});
+    } catch (err) {
+      response.statusCode = err.statusCode;
+      return response.json(err);
+    }
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const { email, password } = request.body;

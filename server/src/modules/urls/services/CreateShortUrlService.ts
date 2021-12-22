@@ -26,7 +26,7 @@ class CreateUserService {
 
       const link = await urlsRepository.create({
         url,
-        shortUrl: `localhost:8080/${idRandom}`,
+        shortUrl: `http://localhost:8080/#/${idRandom}`,
         user_id,
         visited: 0,
       });

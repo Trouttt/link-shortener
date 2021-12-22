@@ -6,10 +6,11 @@ import UrlsController from '../controllers/UrlsController';
 const urlsRouter = Router();
 const urlsController = new UrlsController();
 
-urlsRouter.get('/:userId', ensureAuthenticate, urlsController.getUserUrls);
+urlsRouter.post('/user', ensureAuthenticate, urlsController.getUserUrls);
 urlsRouter.get('/', urlsController.getMoreVisited);
 urlsRouter.post('/', urlsController.create);
+urlsRouter.post('/find', urlsController.getUrlFromShortUrl);
 urlsRouter.put('/', urlsController.update);
-urlsRouter.delete('/', urlsController.delete);
+urlsRouter.delete('/:id', ensureAuthenticate, urlsController.delete);
 
 export default urlsRouter;
