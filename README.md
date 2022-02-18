@@ -15,6 +15,9 @@
  - Testes unitários e e2e
 
 
+https://share.vidyard.com/watch/qLJP6ACWhoVmgA4ECTmuom 
+Apresentação do projeto.
+
 Pra rodar o front precisa do QUASAR e YARN
 
 Comando:
